@@ -23,3 +23,14 @@ htmlcov/
 .DS_Store
 Thumbs.db
 Desktop.ini
+
+# File cấu hình môi trường chứa API Key nhạy cảm
+**/.env
+
+# Thư mục logs của bài Lab
+**/logs/
+*.log
+
+# Thư mục chứa model cục bộ (GGUF)
+**/models/
+*.gguf
