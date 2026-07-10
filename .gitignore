@@ -1,0 +1,25 @@
+# Môi trường ảo Python (Virtual Environments)
+.venv/
+venv/
+env/
+ENV/
+
+# Python cache & compiled files
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Pytest & Coverage cache
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Cấu hình IDE & Editor
+.vscode/
+.idea/
+
+# File tạm hệ điều hành
+.DS_Store
+Thumbs.db
+Desktop.ini
