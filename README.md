@@ -31,6 +31,7 @@ Vin20K-AI-In-Action/ (Thư mục gốc)
 1. **Khởi tạo bài Lab:** 
    - Đồng bộ hoặc clone bài Lab từ nguồn GitHub của khóa học.
    - Thư mục được đặt tên theo định dạng `DayXX_Ten_Bai_Lab` (viết hoa chữ cái đầu của mỗi từ trong tên Lab, các từ nối với nhau bằng dấu gạch dưới `_`).
+   - **Xóa ngay thư mục ẩn `.git/`** bên trong thư mục bài Lab vừa clone để tránh xung đột Git (Nested Git Repository / Gitlink).
 2. **Cấu hình môi trường:**
    - Tạo môi trường ảo riêng biệt cho Lab đó: `python -m venv .venv`.
    - Cài đặt đầy đủ các thư viện từ file `requirements.txt` của Lab: `pip install -r requirements.txt`.

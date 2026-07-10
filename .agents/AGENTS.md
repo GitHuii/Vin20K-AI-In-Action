@@ -22,6 +22,7 @@ Dự án này được dùng để lưu trữ và thực hiện các bài thực
   - Ngay sau khi khởi tạo mỗi bài Lab, cần thực hiện cài đặt ngay môi trường làm việc (ví dụ: tạo môi trường ảo `.venv` và cài đặt các thư viện từ `requirements.txt` của Lab đó) trước khi viết code.
 - **Quản lý Git & Dọn dẹp sau khi hoàn thành Lab**:
   - Trợ lý AI **TUYỆT ĐỐI KHÔNG ĐƯỢC TỰ Ý CHẠY CÁC LỆNH GIT/GITHUB** (người dùng sẽ tự thực hiện thủ công tất cả các lệnh Git).
+  - Ngay sau khi clone bài Lab về, cần thực hiện xóa ngay thư mục ẩn `.git/` nằm trong thư mục của Lab đó để tránh xung đột Git (Nested Git Repository / Gitlink).
   - Sau khi hoàn thành mỗi bài Lab, người dùng sẽ yêu cầu viết `.gitignore` ở thư mục gốc (root) để chuẩn bị commit & push.
   - Sau khi push thành công, hỗ trợ người dùng dọn dẹp các tài nguyên local không cần thiết (như thư mục môi trường ảo `.venv`, cache, v.v.) để giải phóng dung lượng bộ nhớ.
 - **Quy định về File Test & Sửa lỗi**:
