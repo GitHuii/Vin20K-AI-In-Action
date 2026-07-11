@@ -1,0 +1,37 @@
+[
+  {
+    "id": "tc-01",
+    "message": "tiền bánh mì và trà sữa trưa nay",
+    "expected_category": "Ăn uống",
+    "type": "happy",
+    "description": "Happy Path: AI nhận diện đúng danh mục Ăn uống dựa trên từ khóa rõ ràng."
+  },
+  {
+    "id": "tc-02",
+    "message": "mua hộ tớ cái áo phông nhé",
+    "expected_category": "Mua sắm",
+    "type": "happy",
+    "description": "Happy Path: AI nhận diện đúng danh mục Mua sắm."
+  },
+  {
+    "id": "tc-03",
+    "message": "gửi anh Nam",
+    "expected_category": "Chuyển tiền",
+    "type": "low-confidence",
+    "description": "Low-confidence Path: Lời nhắn mơ hồ, AI cần hỏi lại người dùng để gán nhãn."
+  },
+  {
+    "id": "tc-04",
+    "message": "mua hộ cuốn sách lập trình python",
+    "expected_category": "Học tập",
+    "type": "failure-recovery",
+    "description": "Failure -> Correction Path: AI ban đầu phân loại sai thành Mua sắm (vì từ khóa 'mua hộ'). User sửa thành Học tập. Hệ thống phải học quy luật này."
+  },
+  {
+    "id": "tc-05",
+    "message": "sách toán cao cấp cho Nam",
+    "expected_category": "Học tập",
+    "type": "correction-verification",
+    "description": "Correction Path Verification: Sau khi học từ tc-04, câu này phải được tự động phân loại đúng thành Học tập."
+  }
+]

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoMo Moni - AI Financial Assistant Prototype</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom Style -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- HEADER -->
+        <header class="app-header">
+            <div class="brand">
+                <img src="https://upload.wikimedia.org/wikipedia/vi/f/fe/MoMo_Logo.png" alt="MoMo Logo" class="logo">
+                <div class="brand-text">
+                    <h1>Moni AI</h1>
+                    <span class="badge">Hackathon Day 06 Prototype</span>
+                </div>
+            </div>
+            <div class="status-indicator">
+                <span class="dot pulse"></span> Conditional Automation Active
+            </div>
+        </header>
+
+        <!-- MAIN LAYOUT -->
+        <main class="app-main">
+            <!-- LEFT COLUMN: PHONE SIMULATOR -->
+            <section class="phone-simulator-section">
+                <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="phone-screen">
+                        <!-- Screen Header -->
+                        <div class="screen-header">
+                            <div class="status-bar">
+                                <span class="time" id="current-time">09:41</span>
+                                <div class="icons">
+                                    <i class="fa-solid fa-signal"></i>
+                                    <i class="fa-solid fa-wifi"></i>
+                                    <i class="fa-solid fa-battery-three-quarters"></i>
+                                </div>
+                            </div>
+                            <div class="navigation-bar">
+                                <button class="back-btn" id="back-to-home"><i class="fa-solid fa-chevron-left"></i></button>
+                                <span class="screen-title" id="screen-title">Ví MoMo</span>
+                                <button class="action-btn"><i class="fa-solid fa-ellipsis"></i></button>
+                            </div>
+                        </div>
+
+                        <!-- Screen Content Area -->
+                        <div class="screen-content" id="screen-content">
+                            <!-- SCREEN 1: HOME (Dashboard & Transactions) -->
+                            <div class="screen active" id="screen-home">
+                                <div class="wallet-balance">
+                                    <span class="balance-label">Số dư túi thần tài</span>
+                                    <div class="balance-value">
+                                        <span class="amount">10,540,000</span> <span class="currency">đ</span>
+                                        <i class="fa-regular fa-eye-slash hide-eye"></i>
+                                    </div>
+                                    <div class="wallet-actions">
+                                        <button class="wallet-action-btn" id="btn-go-transfer">
+                                            <i class="fa-solid fa-paper-plane"></i>
+                                            <span>Chuyển tiền P2P</span>
+                                        </button>
+                                        <button class="wallet-action-btn" id="btn-go-chatbot">
+                                            <i class="fa-solid fa-robot"></i>
+                                            <span>Trợ lý Moni</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Expense Analysis (Biểu đồ mini) -->
+                                <div class="section-card chart-card">
+                                    <div class="card-header">
+                                        <h3>Phân tích chi tiêu tháng này</h3>
+                                        <span class="view-all">Xem báo cáo</span>
+                                    </div>
+                                    <div class="chart-container">
+                                        <div class="donut-chart-mock">
+                                            <div class="donut-hole">
+                                                <span class="total-spent" id="chart-total-spent">0đ</span>
+                                                <span class="total-label">Tổng chi tiêu</span>
+                                            </div>
+                                        </div>
+                                        <div class="chart-legend" id="chart-legend">
+                                            <!-- Dynamically generated -->
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Transaction History List -->
+                                <div class="section-card transaction-card">
+                                    <div class="card-header">
+                                        <h3>Lịch sử giao dịch Moni</h3>
+                                        <span class="clear-data" id="btn-reset-data"><i class="fa-solid fa-trash-can"></i> Reset</span>
+                                    </div>
+                                    <div class="transaction-list" id="transaction-list">
+                                        <!-- Dynamically generated -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- SCREEN 2: TRANSFER P2P -->
+                            <div class="screen" id="screen-transfer">
+                                <div class="transfer-form">
+                                    <div class="input-group">
+                                        <label for="transfer-recipient">Người nhận</label>
+                                        <div class="recipient-input-wrapper">
+                                            <i class="fa-solid fa-user-circle"></i>
+                                            <input type="text" id="transfer-recipient" placeholder="Tên hoặc Số điện thoại" value="Nguyễn Văn Nam">
+                                        </div>
+                                    </div>
+
+                                    <div class="input-group">
+                                        <label for="transfer-amount">Số tiền chuyển (đ)</label>
+                                        <input type="number" id="transfer-amount" placeholder="Nhập số tiền" value="50000">
+                                    </div>
+
+                                    <div class="input-group">
+                                        <label for="transfer-message">Lời nhắn chuyển tiền (AI sẽ phân tích)</label>
+                                        <textarea id="transfer-message" placeholder="Ví dụ: tiền ăn trưa bún chả, mua hộ tớ ly cafe..."></textarea>
+                                    </div>
+
+                                    <button class="btn-primary" id="btn-submit-transfer">Xác nhận chuyển khoản</button>
+                                </div>
+                            </div>
+
+                            <!-- SCREEN 3: CHATBOT MONI -->
+                            <div class="screen" id="screen-chatbot">
+                                <div class="chatbot-container">
+                                    <div class="chatbot-welcome">
+                                        <div class="avatar-large"><i class="fa-solid fa-robot"></i></div>
+                                        <h4>Trợ thủ tài chính Moni</h4>
+                                        <p>Tôi phân tích chi tiêu thật dựa trên cả giao dịch P2P của bạn. Hãy hỏi tôi bất cứ điều gì!</p>
+                                        <div class="chat-suggestions">
+                                            <button class="chat-suggest-btn">Tháng này tiêu bao nhiêu tiền ăn rồi?</button>
+                                            <button class="chat-suggest-btn">Liệt kê các khoản mua sắm?</button>
+                                        </div>
+                                    </div>
+                                    <div class="chat-messages" id="chat-messages">
+                                        <!-- Chat messages will appear here -->
+                                    </div>
+                                    <div class="chat-input-wrapper">
+                                        <input type="text" id="chat-input" placeholder="Hỏi Moni về chi tiêu của bạn...">
+                                        <button id="btn-send-chat"><i class="fa-solid fa-paper-plane"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Toast Notification Area -->
+                        <div class="toast-notification" id="toast-notification">
+                            <!-- Show transaction notification / AI gán nhãn -->
+                        </div>
+
+                        <!-- Low-Confidence Dialog (Interactive Pop-up) -->
+                        <div class="modal-overlay" id="low-confidence-modal">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <i class="fa-solid fa-circle-question question-icon"></i>
+                                    <h3>Moni cần xác nhận</h3>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Giao dịch chuyển tiền cho <strong id="modal-rec-name">...</strong> với lời nhắn <em id="modal-msg-text">"..."</em> dùng cho mục đích gì?</p>
+                                    <div class="suggestion-chips" id="modal-chips">
+                                        <!-- Categories chips -->
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn-secondary" id="modal-btn-cancel">Bỏ qua (Xếp vào Chuyển tiền)</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- App Navigation Tabs -->
+                        <div class="phone-tabs">
+                            <button class="tab-item active" id="tab-home">
+                                <i class="fa-solid fa-wallet"></i>
+                                <span>Ví của tôi</span>
+                            </button>
+                            <button class="tab-item" id="tab-transfer">
+                                <i class="fa-solid fa-paper-plane"></i>
+                                <span>Chuyển tiền</span>
+                            </button>
+                            <button class="tab-item" id="tab-chatbot">
+                                <i class="fa-solid fa-robot"></i>
+                                <span>Trợ lý AI</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RIGHT COLUMN: INTERACTIVE TESTING PANEL -->
+            <section class="testing-panel-section">
+                <!-- API CONFIGURATION PANEL -->
+                <div class="panel-card api-config-card" style="border-color: var(--momo-pink);">
+                    <div class="panel-card-header">
+                        <h2><i class="fa-solid fa-key"></i> Cấu hình Gemini API (AI Thật)</h2>
+                        <span class="sub">Nhập API Key để vượt qua điều kiện chặn điểm của Hackathon. Khóa được lưu an toàn tại LocalStorage của bạn.</span>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <div style="display: flex; gap: 10px; align-items: center;">
+                            <input type="password" id="gemini-api-key" placeholder="Nhập Gemini API Key..." style="flex: 1; padding: 10px; border-radius: 8px; border: 1px solid var(--border-color); background-color: rgba(255,255,255,0.03); color: white; font-size: 13px;">
+                            <button id="btn-save-key" class="btn-primary" style="margin: 0; padding: 10px 16px;">Lưu</button>
+                            <button id="btn-clear-key" class="clear-btn" style="padding: 10px 12px; height: 38px;">Xóa</button>
+                        </div>
+                        <div style="font-size: 12px; display: flex; align-items: center; gap: 8px;">
+                            <span>Trạng thái kết nối:</span>
+                            <span id="api-status-badge" style="font-weight: 700; color: var(--text-muted); display: inline-flex; align-items: center; gap: 6px;">
+                                <span class="dot" style="background-color: var(--text-muted); width: 8px; height: 8px; border-radius: 50%;"></span>
+                                AI Cục bộ (Regex Fallback)
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 1: Test Cases -->
+                <div class="panel-card test-cases-card">
+                    <div class="panel-card-header">
+                        <h2><i class="fa-solid fa-flask"></i> Bộ dữ liệu kiểm thử (Test Cases)</h2>
+                        <span class="sub">Nhấn vào bất kỳ test case nào để tự động nhập vào simulator và chạy thử</span>
+                    </div>
+                    <div class="test-case-list" id="test-case-list-panel">
+                        <!-- Dynamically loaded test cases -->
+                    </div>
+                </div>
+
+                <!-- Tab 2: AI Internals Log -->
+                <div class="panel-card ai-logs-card">
+                    <div class="panel-card-header">
+                        <h2><i class="fa-solid fa-terminal"></i> Nhật ký hoạt động của AI (AI Processing Log)</h2>
+                        <button class="clear-btn" id="btn-clear-logs"><i class="fa-solid fa-eraser"></i> Xóa log</button>
+                    </div>
+                    <div class="terminal-body" id="ai-logs-terminal">
+                        <div class="log-line system-log">[Moni AI System Initialized] Sẵn sàng phân tích giao dịch...</div>
+                    </div>
+                </div>
+
+                <!-- Tab 3: Local Storage / Feedback Loop Rules -->
+                <div class="panel-card feedback-rules-card">
+                    <div class="panel-card-header">
+                        <h2><i class="fa-solid fa-brain"></i> Quy tắc đã học (Personalized Rules - Feedback Loop)</h2>
+                        <span class="sub">Dữ liệu được lưu trữ trong LocalStorage sau khi bạn sửa đổi nhãn sai.</span>
+                    </div>
+                    <div class="rules-container">
+                        <table class="rules-table">
+                            <thead>
+                                <tr>
+                                    <th>Người nhận</th>
+                                    <th>Từ khóa (Nội dung)</th>
+                                    <th>Gán nhãn đã học</th>
+                                    <th>Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody id="feedback-rules-list">
+                                <tr>
+                                    <td colspan="4" class="empty-rules">Chưa có quy tắc cá nhân hóa nào được học. Thử sửa nhãn giao dịch sai để tạo quy tắc mới!</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Category Selector Dropdown Template (will be shown dynamically in history) -->
+    <div id="category-selector-dropdown" class="category-dropdown hidden">
+        <!-- Loaded dynamically -->
+    </div>
+
+    <!-- Custom Logic Script -->
+    <script src="app.js"></script>
+</body>
+</html>
