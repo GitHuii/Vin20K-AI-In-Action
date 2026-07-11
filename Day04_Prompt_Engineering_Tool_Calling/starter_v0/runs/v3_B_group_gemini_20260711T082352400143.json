@@ -1,0 +1,860 @@
+{
+  "run_id": "v3_B_group_gemini_20260711T082352400143",
+  "version": "v3",
+  "artifact_version": "v3+p61809751bb44+tef4abd2b860a",
+  "prompt_hash": "61809751bb44d79d69ae23f5ef77712b4079363754b765102ee9221302fd7117",
+  "tools_hash": "ef4abd2b860a3c41ae3db6720844340c74526ed0453c4a18cb79dbc528aee61d",
+  "phase": "B",
+  "suite": "group",
+  "provider": "gemini",
+  "model": "gemini-3.1-flash-lite",
+  "system_prompt": "C:\\Users\\ADMIN\\Desktop\\Vin20K-AI-In-Action\\Day04_Prompt_Engineering_Tool_Calling\\starter_v0\\artifacts\\system_prompt.md",
+  "tools": "C:\\Users\\ADMIN\\Desktop\\Vin20K-AI-In-Action\\Day04_Prompt_Engineering_Tool_Calling\\starter_v0\\artifacts\\tools.yaml",
+  "eval_cases": "data\\eval_group.json",
+  "dataset_id": "day04_v2_research_group",
+  "dataset_role": "group",
+  "description": "Case do NHÓM tự viết thêm để cover thêm trường hợp. Mỗi case cần: id, phase='B', query HOẶC turns, failure_type (thuộc allowed_failure_types), và expect (tool_calls[...] hoặc no_tool=true). Nên kèm metadata.what_it_tests.",
+  "generated_at": "2026-07-11T08:23:52",
+  "summary": {
+    "total_cases": 10,
+    "measured_cases": 10,
+    "provider_error_cases": 0,
+    "passed_cases": 9,
+    "case_accuracy": 0.9,
+    "tool_routing_accuracy": 1.0,
+    "argument_accuracy": 0.9,
+    "multiturn_accuracy": 0.8,
+    "failure_counts": {
+      "wrong_tool": 1
+    },
+    "observed_mismatch_counts": {
+      "wrong_arg_value": 1
+    }
+  },
+  "results": [
+    {
+      "id": "G01_calculator_test",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": false,
+      "metadata": {
+        "skill": "calculator_routing",
+        "difficulty": "easy",
+        "what_it_tests": "Gọi đúng tool calculator với biểu thức toán học."
+      },
+      "input": "Tính giúp mình biểu thức này với: (12 + 15) * 3",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "calculator",
+            "args": {
+              "expression": "(12 + 15) * 3"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "calculator",
+            "args": {
+              "expression": "(12 + 15) * 3"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_tool",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "calculator",
+          "args": {
+            "expression": "(12 + 15) * 3"
+          },
+          "result": {
+            "tool": "calculator",
+            "status": "success",
+            "expression": "(12 + 15) * 3",
+            "result": 81.0
+          }
+        }
+      ]
+    },
+    {
+      "id": "G02_arxiv_search",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": false,
+      "metadata": {
+        "skill": "arxiv_routing",
+        "difficulty": "easy",
+        "what_it_tests": "Tìm bài báo khoa học trên arXiv -> gọi papers."
+      },
+      "input": "Tìm kiếm các bài báo khoa học về Transformer model trên ArXiv",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "papers",
+            "args": {
+              "query": "Transformer model"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "papers",
+            "args": {
+              "query": "Transformer model"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_tool",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "papers",
+          "args": {
+            "query": "Transformer model"
+          },
+          "result": {
+            "tool": "arxiv_search",
+            "query": "Transformer model",
+            "api_query": "all:Transformer AND all:model",
+            "total_results": 82222,
+            "items": [
+              {
+                "arxiv_id": "2402.05964v2",
+                "title": "A Survey on Transformer Compression",
+                "summary": "Transformer plays a vital role in the realms of natural language processing (NLP) and computer vision (CV), specially for constructing large language models (LLM) and large vision models (LVM). Model compression methods reduce the memory and computational cost of Transformer, which is a necessary step to implement large language/vision models on practical devices. Given the unique architecture of Transformer, featuring alternative attention and feedforward neural network (FFN) modules, specific compression techniques are usually required. The efficiency of these compression methods is also paramount, as retraining large models on the entire training dataset is usually impractical. This survey provides a comprehensive review of recent compression methods, with a specific focus on their application to Transformer-based models. The compression methods are primarily categorized into pruning, quantization, knowledge distillation, and efficient architecture design (Mamba, RetNet, RWKV, etc.). In each category, we discuss compression methods for both language and vision tasks, highlighting common underlying principles. Finally, we delve into the relation between various compression methods, and discuss further directions in this domain.",
+                "authors": [
+                  "Yehui Tang",
+                  "Yunhe Wang",
+                  "Jianyuan Guo",
+                  "Zhijun Tu",
+                  "Kai Han",
+                  "Hailin Hu",
+                  "Dacheng Tao"
+                ],
+                "published": "2024-02-05T12:16:28Z",
+                "updated": "2024-04-07T13:03:58Z",
+                "url": "http://arxiv.org/abs/2402.05964v2",
+                "pdf_url": "https://arxiv.org/pdf/2402.05964v2",
+                "source": "arxiv.org",
+                "primary_category": "cs.LG",
+                "categories": [
+                  "cs.LG",
+                  "cs.CL",
+                  "cs.CV"
+                ]
+              },
+              {
+                "arxiv_id": "2303.00957v1",
+                "title": "Preference Transformer: Modeling Human Preferences using Transformers for RL",
+                "summary": "Preference-based reinforcement learning (RL) provides a framework to train agents using human preferences between two behaviors. However, preference-based RL has been challenging to scale since it requires a large amount of human feedback to learn a reward function aligned with human intent. In this paper, we present Preference Transformer, a neural architecture that models human preferences using transformers. Unlike prior approaches assuming human judgment is based on the Markovian rewards which contribute to the decision equally, we introduce a new preference model based on the weighted sum of non-Markovian rewards. We then design the proposed preference model using a transformer architecture that stacks causal and bidirectional self-attention layers. We demonstrate that Preference Transformer can solve a variety of control tasks using real human preferences, while prior approaches fail to work. We also show that Preference Transformer can induce a well-specified reward and attend to critical events in the trajectory by automatically capturing the temporal dependencies in human decision-making. Code is available on the project website: https://sites.google.com/view/preference-transformer.",
+                "authors": [
+                  "Changyeon Kim",
+                  "Jongjin Park",
+                  "Jinwoo Shin",
+                  "Honglak Lee",
+                  "Pieter Abbeel",
+                  "Kimin Lee"
+                ],
+                "published": "2023-03-02T04:24:29Z",
+                "updated": "2023-03-02T04:24:29Z",
+                "url": "http://arxiv.org/abs/2303.00957v1",
+                "pdf_url": "https://arxiv.org/pdf/2303.00957v1",
+                "source": "arxiv.org",
+                "primary_category": "cs.LG",
+                "categories": [
+                  "cs.LG",
+                  "cs.AI",
+                  "cs.RO"
+                ]
+              },
+              {
+                "arxiv_id": "1809.04281v3",
+                "title": "Music Transformer",
+                "summary": "Music relies heavily on repetition to build structure and meaning. Self-reference occurs on multiple timescales, from motifs to phrases to reusing of entire sections of music, such as in pieces with ABA structure. The Transformer (Vaswani et al., 2017), a sequence model based on self-attention, has achieved compelling results in many generation tasks that require maintaining long-range coherence. This suggests that self-attention might also be well-suited to modeling music. In musical composition and performance, however, relative timing is critically important. Existing approaches for representing relative positional information in the Transformer modulate attention based on pairwise distance (Shaw et al., 2018). This is impractical for long sequences such as musical compositions since their memory complexity for intermediate relative information is quadratic in the sequence length. We propose an algorithm that reduces their intermediate memory requirement to linear in the sequence length. This enables us to demonstrate that a Transformer with our modified relative attention mechanism can generate minute-long compositions (thousands of steps, four times the length modeled in Oore et al., 2018) with compelling structure, generate continuations that coherently elaborate on a given motif, and in a seq2seq setup generate accompaniments conditioned on melodies. We evaluate the Transformer with our relative attention mechanism on two datasets, JSB Chorales and Piano-e-Competition, and obtain state-of-the-art results on the latter.",
+                "authors": [
+                  "Cheng-Zhi Anna Huang",
+                  "Ashish Vaswani",
+                  "Jakob Uszkoreit",
+                  "Noam Shazeer",
+                  "Ian Simon",
+                  "Curtis Hawthorne",
+                  "Andrew M. Dai",
+                  "Matthew D. Hoffman",
+                  "Monica Dinculescu",
+                  "Douglas Eck"
+                ],
+                "published": "2018-09-12T07:15:26Z",
+                "updated": "2018-12-12T07:42:08Z",
+                "url": "http://arxiv.org/abs/1809.04281v3",
+                "pdf_url": "https://arxiv.org/pdf/1809.04281v3",
+                "source": "arxiv.org",
+                "primary_category": "cs.LG",
+                "categories": [
+                  "cs.LG",
+                  "cs.SD",
+                  "eess.AS",
+                  "stat.ML"
+                ]
+              },
+              {
+                "arxiv_id": "2405.06266v1",
+                "title": "A Multi-Channel Spatial-Temporal Transformer Model for Traffic Flow Forecasting",
+                "summary": "Traffic flow forecasting is a crucial task in transportation management and planning. The main challenges for traffic flow forecasting are that (1) as the length of prediction time increases, the accuracy of prediction will decrease; (2) the predicted results greatly rely on the extraction of temporal and spatial dependencies from the road networks. To overcome the challenges mentioned above, we propose a multi-channel spatial-temporal transformer model for traffic flow forecasting, which improves the accuracy of the prediction by fusing results from different channels of traffic data. Our approach leverages graph convolutional network to extract spatial features from each channel while using a transformer-based architecture to capture temporal dependencies across channels. We introduce an adaptive adjacency matrix to overcome limitations in feature extraction from fixed topological structures. Experimental results on six real-world datasets demonstrate that introducing a multi-channel mechanism into the temporal model enhances performance and our proposed model outperforms state-of-the-art models in terms of accuracy.",
+                "authors": [
+                  "Jianli Xiao",
+                  "Baichao Long"
+                ],
+                "published": "2024-05-10T06:37:07Z",
+                "updated": "2024-05-10T06:37:07Z",
+                "url": "http://arxiv.org/abs/2405.06266v1",
+                "pdf_url": "https://arxiv.org/pdf/2405.06266v1",
+                "source": "arxiv.org",
+                "primary_category": "cs.AI",
+                "categories": [
+                  "cs.AI"
+                ]
+              },
+              {
+                "arxiv_id": "2106.02277v1",
+                "title": "Glance-and-Gaze Vision Transformer",
+                "summary": "Recently, there emerges a series of vision Transformers, which show superior performance with a more compact model size than conventional convolutional neural networks, thanks to the strong ability of Transformers to model long-range dependencies. However, the advantages of vision Transformers also come with a price: Self-attention, the core part of Transformer, has a quadratic complexity to the input sequence length. This leads to a dramatic increase of computation and memory cost with the increase of sequence length, thus introducing difficulties when applying Transformers to the vision tasks that require dense predictions based on high-resolution feature maps. In this paper, we propose a new vision Transformer, named Glance-and-Gaze Transformer (GG-Transformer), to address the aforementioned issues. It is motivated by the Glance and Gaze behavior of human beings when recognizing objects in natural scenes, with the ability to efficiently model both long-range dependencies and local context. In GG-Transformer, the Glance and Gaze behavior is realized by two parallel branches: The Glance branch is achieved by performing self-attention on the adaptively-dilated partitions of the input, which leads to a linear complexity while still enjoying a global receptive field; The Gaze branch is implemented by a simple depth-wise convolutional layer, which compensates local image context to the features obtained by the Glance mechanism. We empirically demonstrate our method achieves consistently superior performance over previous state-of-the-art Transformers on various vision tasks and benchmarks. The codes and models will be made available at https://github.com/yucornetto/GG-Transformer.",
+                "authors": [
+                  "Qihang Yu",
+                  "Yingda Xia",
+                  "Yutong Bai",
+                  "Yongyi Lu",
+                  "Alan Yuille",
+                  "Wei Shen"
+                ],
+                "published": "2021-06-04T06:13:47Z",
+                "updated": "2021-06-04T06:13:47Z",
+                "url": "http://arxiv.org/abs/2106.02277v1",
+                "pdf_url": "https://arxiv.org/pdf/2106.02277v1",
+                "source": "arxiv.org",
+                "primary_category": "cs.CV",
+                "categories": [
+                  "cs.CV"
+                ]
+              }
+            ],
+            "rate_limit_note": "arXiv may return 429 if called too frequently; this tool waits at least 3 seconds between requests in-process."
+          }
+        }
+      ]
+    },
+    {
+      "id": "G03_missing_handle_clarify",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": false,
+      "metadata": {
+        "skill": "clarify_missing_handle_group",
+        "difficulty": "medium",
+        "what_it_tests": "Yêu cầu tweet nhưng thiếu handle -> hỏi lại bằng clarify."
+      },
+      "input": "Lấy các bài đăng mới nhất giúp tôi",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "clarify",
+            "args": {
+              "response_type": "text"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "clarify",
+            "args": {
+              "response_type": "text",
+              "question": "Bạn muốn lấy bài đăng từ tài khoản nào? Vui lòng cung cấp tên tài khoản (handle)."
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "missing_info",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "clarify",
+          "args": {
+            "response_type": "text",
+            "question": "Bạn muốn lấy bài đăng từ tài khoản nào? Vui lòng cung cấp tên tài khoản (handle)."
+          },
+          "result": {
+            "tool": "ask_user",
+            "question": "Bạn muốn lấy bài đăng từ tài khoản nào? Vui lòng cung cấp tên tài khoản (handle).",
+            "response_type": "text",
+            "options": [],
+            "awaiting_user": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "G04_out_of_scope_creative",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": false,
+      "metadata": {
+        "skill": "out_of_scope_creative",
+        "difficulty": "easy",
+        "what_it_tests": "Yêu cầu sáng tác thơ ngoài phạm vi research -> từ chối, không gọi tool."
+      },
+      "input": "Hãy viết một bài thơ về mùa thu Hà Nội.",
+      "expect": {
+        "no_tool": true,
+        "behavior": "refuse"
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [],
+        "actual_text": "Tôi rất tiếc, nhưng tôi không thể thực hiện yêu cầu viết thơ vì điều đó nằm ngoài phạm vi chức năng của tôi. Tôi chỉ có thể hỗ trợ bạn trong các công việc như tìm kiếm thông tin, tra cứu tin tức, tìm bài báo khoa học, thực hiện các phép tính toán học hoặc các tác vụ liên quan đến mạng xã hội.\n\nNếu bạn cần tìm hiểu thông tin về mùa thu Hà Nội hoặc các chủ đề khác, tôi rất sẵn lòng giúp đỡ!",
+        "case_failure_type": "out_of_scope",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": []
+    },
+    {
+      "id": "G05_web_news_vietnamese",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": false,
+      "metadata": {
+        "skill": "lookup_vietnamese",
+        "difficulty": "medium",
+        "what_it_tests": "Lọc từ khóa query sạch tiếng Việt và trích xuất đúng topic=news, timeframe=week."
+      },
+      "input": "Tin tức mới nhất về trí tuệ nhân tạo tuần này",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "lookup",
+            "args": {
+              "query": "trí tuệ nhân tạo",
+              "topic": "news",
+              "timeframe": "week"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "lookup",
+            "args": {
+              "query": "trí tuệ nhân tạo",
+              "timeframe": "week",
+              "topic": "news"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_arg_value",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "lookup",
+          "args": {
+            "query": "trí tuệ nhân tạo",
+            "timeframe": "week",
+            "topic": "news"
+          },
+          "result": {
+            "tool": "web_search",
+            "error": "RuntimeError",
+            "message": "Missing TAVILY_API_KEY env var"
+          }
+        }
+      ]
+    },
+    {
+      "id": "G06_multiturn_clarify_calculator",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": true,
+      "metadata": {
+        "skill": "multiturn_clarify_calculator",
+        "difficulty": "medium",
+        "what_it_tests": "Hội thoại nhiều lượt: nhận diện biểu thức sau khi được cung cấp."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Tính giúp mình biểu thức này với"
+        },
+        {
+          "role": "user",
+          "content": "Biểu thức là: 15 * 4 - 3"
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "calculator",
+            "args": {
+              "expression": "15 * 4 - 3"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "calculator",
+            "args": {
+              "expression": "15 * 4 - 3"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "missing_info",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "calculator",
+          "args": {
+            "expression": "15 * 4 - 3"
+          },
+          "result": {
+            "tool": "calculator",
+            "status": "success",
+            "expression": "15 * 4 - 3",
+            "result": 57.0
+          }
+        }
+      ]
+    },
+    {
+      "id": "G07_multiturn_change_calculator",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": true,
+      "metadata": {
+        "skill": "multiturn_correction_calculator",
+        "difficulty": "hard",
+        "what_it_tests": "Hội thoại nhiều lượt: cập nhật biểu thức mới sau khi người dùng sửa."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Tính biểu thức 2 + 2"
+        },
+        {
+          "role": "user",
+          "content": "À không, tính 2 * 3"
+        },
+        {
+          "role": "user",
+          "content": "Giữ nguyên phép tính nhân nhé"
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "calculator",
+            "args": {
+              "expression": "2 * 3"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "calculator",
+            "args": {
+              "expression": "2 * 3"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_arg_value",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "calculator",
+          "args": {
+            "expression": "2 * 3"
+          },
+          "result": {
+            "tool": "calculator",
+            "status": "success",
+            "expression": "2 * 3",
+            "result": 6.0
+          }
+        }
+      ]
+    },
+    {
+      "id": "G08_multiturn_carryover_arxiv",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": true,
+      "metadata": {
+        "skill": "multiturn_carryover_arxiv",
+        "difficulty": "hard",
+        "what_it_tests": "Hội thoại nhiều lượt: giữ ngữ cảnh tìm trên arXiv, cập nhật query mới."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Tìm bài báo về Transformer trên arXiv"
+        },
+        {
+          "role": "user",
+          "content": "Còn về Diffusion models thì sao?"
+        },
+        {
+          "role": "user",
+          "content": "Tìm trên arXiv luôn nhé"
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "papers",
+            "args": {
+              "query": "Diffusion models"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "papers",
+            "args": {
+              "query": "Diffusion models"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_tool",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "papers",
+          "args": {
+            "query": "Diffusion models"
+          },
+          "result": {
+            "tool": "arxiv_search",
+            "query": "Diffusion models",
+            "api_query": "all:Diffusion AND all:models",
+            "total_results": 58832,
+            "items": [
+              {
+                "arxiv_id": "2605.22586v3",
+                "title": "A Tutorial on Diffusion Theory: From Differential Equations to Diffusion Models",
+                "summary": "Diffusion models have emerged as a dominant framework for generative modeling, but their mathematical foundations are often presented separately through diffusion probabilistic models, score-based modeling, stochastic differential equations, and numerical sampling methods. We write this tutorial to provide a unified and self-contained account of these viewpoints from the perspective of differential equations. Starting from a conditional Gaussian noising process, we derive ordinary differential equation (ODE) and stochastic differential equation (SDE) representations, pass to the corresponding marginal forward dynamics, and then obtain the reverse-time SDE and probability-flow ODE that make generation possible. We show that the central unknown quantity in reverse sampling is the marginal score, explain how score matching becomes the standard denoising objective under a noise-prediction parameterization, and discuss practical reverse-time sampling and guidance. We further place DDPM, DDIM, flow matching, and score-based SDEs in a common framework, and conclude with diffusion language models in continuous embedding space together with a brief discussion of discrete masked-token diffusion. The tutorial is intended as a bridge between the analytical foundations of diffusion processes and the modern generative algorithms built upon them.",
+                "authors": [
+                  "Jiayi Fu",
+                  "Yuxia Wang"
+                ],
+                "published": "2026-05-21T14:59:12Z",
+                "updated": "2026-05-27T21:34:42Z",
+                "url": "http://arxiv.org/abs/2605.22586v3",
+                "pdf_url": "https://arxiv.org/pdf/2605.22586v3",
+                "source": "arxiv.org",
+                "primary_category": "cs.LG",
+                "categories": [
+                  "cs.LG",
+                  "cs.CL"
+                ]
+              },
+              {
+                "arxiv_id": "2312.03397v1",
+                "title": "Generalized Contrastive Divergence: Joint Training of Energy-Based Model and Diffusion Model through Inverse Reinforcement Learning",
+                "summary": "We present Generalized Contrastive Divergence (GCD), a novel objective function for training an energy-based model (EBM) and a sampler simultaneously. GCD generalizes Contrastive Divergence (Hinton, 2002), a celebrated algorithm for training EBM, by replacing Markov Chain Monte Carlo (MCMC) distribution with a trainable sampler, such as a diffusion model. In GCD, the joint training of EBM and a diffusion model is formulated as a minimax problem, which reaches an equilibrium when both models converge to the data distribution. The minimax learning with GCD bears interesting equivalence to inverse reinforcement learning, where the energy corresponds to a negative reward, the diffusion model is a policy, and the real data is expert demonstrations. We present preliminary yet promising results showing that joint training is beneficial for both EBM and a diffusion model. GCD enables EBM training without MCMC while improving the sample quality of a diffusion model.",
+                "authors": [
+                  "Sangwoong Yoon",
+                  "Dohyun Kwon",
+                  "Himchan Hwang",
+                  "Yung-Kyun Noh",
+                  "Frank C. Park"
+                ],
+                "published": "2023-12-06T10:10:21Z",
+                "updated": "2023-12-06T10:10:21Z",
+                "url": "http://arxiv.org/abs/2312.03397v1",
+                "pdf_url": "https://arxiv.org/pdf/2312.03397v1",
+                "source": "arxiv.org",
+                "primary_category": "cs.LG",
+                "categories": [
+                  "cs.LG",
+                  "cs.AI"
+                ]
+              },
+              {
+                "arxiv_id": "2401.08741v1",
+                "title": "Fixed Point Diffusion Models",
+                "summary": "We introduce the Fixed Point Diffusion Model (FPDM), a novel approach to image generation that integrates the concept of fixed point solving into the framework of diffusion-based generative modeling. Our approach embeds an implicit fixed point solving layer into the denoising network of a diffusion model, transforming the diffusion process into a sequence of closely-related fixed point problems. Combined with a new stochastic training method, this approach significantly reduces model size, reduces memory usage, and accelerates training. Moreover, it enables the development of two new techniques to improve sampling efficiency: reallocating computation across timesteps and reusing fixed point solutions between timesteps. We conduct extensive experiments with state-of-the-art models on ImageNet, FFHQ, CelebA-HQ, and LSUN-Church, demonstrating substantial improvements in performance and efficiency. Compared to the state-of-the-art DiT model, FPDM contains 87% fewer parameters, consumes 60% less memory during training, and improves image generation quality in situations where sampling computation or time is limited. Our code and pretrained models are available at https://lukemelas.github.io/fixed-point-diffusion-models.",
+                "authors": [
+                  "Xingjian Bai",
+                  "Luke Melas-Kyriazi"
+                ],
+                "published": "2024-01-16T18:55:54Z",
+                "updated": "2024-01-16T18:55:54Z",
+                "url": "http://arxiv.org/abs/2401.08741v1",
+                "pdf_url": "https://arxiv.org/pdf/2401.08741v1",
+                "source": "arxiv.org",
+                "primary_category": "cs.CV",
+                "categories": [
+                  "cs.CV",
+                  "cs.AI",
+                  "cs.LG"
+                ]
+              },
+              {
+                "arxiv_id": "2405.03150v2",
+                "title": "Video Diffusion Models: A Survey",
+                "summary": "Diffusion generative models have recently become a powerful technique for creating and modifying high-quality, coherent video content. This survey provides a comprehensive overview of the critical components of diffusion models for video generation, including their applications, architectural design, and temporal dynamics modeling. The paper begins by discussing the core principles and mathematical formulations, then explores various architectural choices and methods for maintaining temporal consistency. A taxonomy of applications is presented, categorizing models based on input modalities such as text prompts, images, videos, and audio signals. Advancements in text-to-video generation are discussed to illustrate the state-of-the-art capabilities and limitations of current approaches. Additionally, the survey summarizes recent developments in training and evaluation practices, including the use of diverse video and image datasets and the adoption of various evaluation metrics to assess model performance. The survey concludes with an examination of ongoing challenges, such as generating longer videos and managing computational costs, and offers insights into potential future directions for the field. By consolidating the latest research and developments, this survey aims to serve as a valuable resource for researchers and practitioners working with video diffusion models. Website: https://github.com/ndrwmlnk/Awesome-Video-Diffusion-Models",
+                "authors": [
+                  "Andrew Melnik",
+                  "Michal Ljubljanac",
+                  "Cong Lu",
+                  "Qi Yan",
+                  "Weiming Ren",
+                  "Helge Ritter"
+                ],
+                "published": "2024-05-06T04:01:42Z",
+                "updated": "2024-11-17T00:40:09Z",
+                "url": "http://arxiv.org/abs/2405.03150v2",
+                "pdf_url": "https://arxiv.org/pdf/2405.03150v2",
+                "source": "arxiv.org",
+                "primary_category": "cs.CV",
+                "categories": [
+                  "cs.CV",
+                  "cs.LG"
+                ]
+              },
+              {
+                "arxiv_id": "2311.03226v1",
+                "title": "LDM3D-VR: Latent Diffusion Model for 3D VR",
+                "summary": "Latent diffusion models have proven to be state-of-the-art in the creation and manipulation of visual outputs. However, as far as we know, the generation of depth maps jointly with RGB is still limited. We introduce LDM3D-VR, a suite of diffusion models targeting virtual reality development that includes LDM3D-pano and LDM3D-SR. These models enable the generation of panoramic RGBD based on textual prompts and the upscaling of low-resolution inputs to high-resolution RGBD, respectively. Our models are fine-tuned from existing pretrained models on datasets containing panoramic/high-resolution RGB images, depth maps and captions. Both models are evaluated in comparison to existing related methods.",
+                "authors": [
+                  "Gabriela Ben Melech Stan",
+                  "Diana Wofk",
+                  "Estelle Aflalo",
+                  "Shao-Yen Tseng",
+                  "Zhipeng Cai",
+                  "Michael Paulitsch",
+                  "Vasudev Lal"
+                ],
+                "published": "2023-11-06T16:12:10Z",
+                "updated": "2023-11-06T16:12:10Z",
+                "url": "http://arxiv.org/abs/2311.03226v1",
+                "pdf_url": "https://arxiv.org/pdf/2311.03226v1",
+                "source": "arxiv.org",
+                "primary_category": "cs.CV",
+                "categories": [
+                  "cs.CV",
+                  "cs.AI"
+                ]
+              }
+            ],
+            "rate_limit_note": "arXiv may return 429 if called too frequently; this tool waits at least 3 seconds between requests in-process."
+          }
+        }
+      ]
+    },
+    {
+      "id": "G09_multiturn_confirm_telegram",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": true,
+      "metadata": {
+        "skill": "multiturn_confirm_send",
+        "difficulty": "hard",
+        "what_it_tests": "Hội thoại nhiều lượt: sau khi người dùng xác nhận Yes/Đồng ý, tiến hành gọi send với confirmed=true."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Gửi báo cáo này lên Telegram"
+        },
+        {
+          "role": "user",
+          "content": "Đúng thế, gửi đi"
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "send",
+            "args": {
+              "confirmed": true
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "send",
+            "args": {
+              "confirmed": true,
+              "text": "Báo cáo đã được gửi lên Telegram."
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_boundary",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "send",
+          "args": {
+            "confirmed": true,
+            "text": "Báo cáo đã được gửi lên Telegram."
+          },
+          "result": {
+            "tool": "send_telegram",
+            "error": "RuntimeError",
+            "message": "Missing TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID env var"
+          }
+        }
+      ]
+    },
+    {
+      "id": "G10_multiturn_switch_tool_arxiv_web",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": true,
+      "metadata": {
+        "skill": "multiturn_switch_tool_arxiv_web",
+        "difficulty": "hard",
+        "what_it_tests": "Hội thoại nhiều lượt: đổi từ tool papers sang lookup, giữ nguyên query GPT-4."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Tìm bài báo về GPT-4 trên arXiv"
+        },
+        {
+          "role": "user",
+          "content": "Chuyển sang tìm kiếm trên web thường đi"
+        },
+        {
+          "role": "user",
+          "content": "Vẫn giữ chủ đề GPT-4"
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "lookup",
+            "args": {
+              "query": "GPT-4",
+              "topic": "general"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": false,
+        "routing_correct": true,
+        "args_correct": false,
+        "actual_tool_calls": [
+          {
+            "name": "lookup",
+            "args": {
+              "query": "GPT-4"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_tool",
+        "observed_mismatch": "wrong_arg_value",
+        "failure_type": "wrong_tool",
+        "failures": [
+          "topic: expected 'general', got None"
+        ]
+      },
+      "tool_results": [
+        {
+          "tool": "lookup",
+          "args": {
+            "query": "GPT-4"
+          },
+          "result": {
+            "tool": "web_search",
+            "error": "RuntimeError",
+            "message": "Missing TAVILY_API_KEY env var"
+          }
+        }
+      ]
+    }
+  ]
+}

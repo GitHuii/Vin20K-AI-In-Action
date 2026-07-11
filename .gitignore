@@ -34,3 +34,6 @@ Desktop.ini
 # Thư mục chứa model cục bộ (GGUF)
 **/models/
 *.gguf
+
+# Streamlit agent skills (environment-specific symlinks)
+.agents/skills/developing-with-streamlit/
